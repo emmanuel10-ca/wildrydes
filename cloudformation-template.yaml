@@ -479,6 +479,16 @@ Resources:
                 Action:
                   - ecr:GetAuthorizationToken
                 Resource: '*'
+              - Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:GetObjectVersion
+                  - s3:PutObject
+                Resource: !Sub 'arn:aws:s3:::${PipelineArtifactBucket}/*'
+              - Effect: Allow
+                Action:
+                  - s3:GetBucketVersioning
+                Resource: !GetAtt PipelineArtifactBucket.Arn
 
   # CodeBuild Project
   CodeBuildProject:
