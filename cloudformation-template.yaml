@@ -14,7 +14,7 @@ Parameters:
   
   DesiredCount:
     Type: Number
-    Default: 2
+    Default: 0
     Description: Desired number of ECS tasks
   
   GitHubRepo:
@@ -413,8 +413,8 @@ Resources:
         MaximumPercent: 200
         MinimumHealthyPercent: 100
         DeploymentCircuitBreaker:
-          Enable: true
-          Rollback: true
+          Enable: false
+          Rollback: false
       Tags:
         - Key: Name
           Value: !Sub '${EnvironmentName}-service'
@@ -474,7 +474,7 @@ Resources:
                   - ecr:InitiateLayerUpload
                   - ecr:UploadLayerPart
                   - ecr:CompleteLayerUpload
-                Resource: !GetAtt ECRRepository.RepositoryArn
+                Resource: !Sub 'arn:aws:ecr:${AWS::Region}:${AWS::AccountId}:repository/${ECRRepository}'
               - Effect: Allow
                 Action:
                   - ecr:GetAuthorizationToken
