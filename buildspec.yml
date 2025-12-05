@@ -29,11 +29,11 @@ phases:
       - cat imagedefinitions.json
 
 artifacts:
-  files: 
+  files:
     - imagedefinitions.json
   name: BuildArtifact
 
 cache:
   paths:
-    - '/root/.npm/**/*'
-    - '/root/.docker/**/*'
+    - /root/.npm/**/*
+    - /root/.docker/**/*
