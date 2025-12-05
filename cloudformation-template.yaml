@@ -574,8 +574,13 @@ Resources:
                   - ecs:DescribeTaskDefinition
                   - ecs:DescribeTasks
                   - ecs:ListTasks
-                  - iam:PassRole
                 Resource: '*'
+              - Effect: Allow
+                Action:
+                  - iam:PassRole
+                Resource:
+                  - !GetAtt ECSTaskExecutionRole.Arn
+                  - !GetAtt ECSTaskRole.Arn
 
   # S3 Bucket for Pipeline Artifacts
   PipelineArtifactBucket:
